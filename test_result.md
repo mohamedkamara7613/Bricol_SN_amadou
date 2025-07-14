@@ -101,3 +101,63 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "L'utilisateur veut améliorer l'application existante avec deux nouvelles fonctionnalités: (1) permettre de cliquer sur un ouvrier trouvé pour voir son profil détaillé avec commentaires et expériences, (2) améliorer le fond de la map qui semble trop simple"
+
+frontend:
+  - task: "Détail profil ouvrier - Modal avec informations complètes"
+    implemented: false
+    working: "NA"
+    file: "src/components/WorkerSearchMap.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Tâche à implémenter - créer un modal pour afficher le profil détaillé avec commentaires et expériences"
+  
+  - task: "Amélioration fond de map - Design plus sophistiqué"
+    implemented: false
+    working: "NA"
+    file: "src/components/WorkerSearchMap.css"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Améliorer le fond de la map avec un design plus attrayant et réaliste"
+
+  - task: "Enrichissement données mock - Ajout commentaires et expériences"
+    implemented: false
+    working: "NA"
+    file: "src/data/mock.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Enrichir les données mock avec profils détaillés, commentaires, expériences"
+
+backend:
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 0
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Enrichissement données mock - Ajout commentaires et expériences"
+    - "Détail profil ouvrier - Modal avec informations complètes"
+    - "Amélioration fond de map - Design plus sophistiqué"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "Début de l'implémentation des nouvelles fonctionnalités demandées par l'utilisateur: modal profil détaillé et amélioration du fond de map"
