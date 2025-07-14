@@ -198,12 +198,16 @@ const WorkerSearchMap = () => {
       </div>
 
       {/* Results summary */}
-      {isSearching && workersInRadius.length > 0 && (
+      {showResults && workersInRadius.length > 0 && (
         <div className="results-summary">
           <h3>Ouvriers disponibles dans votre zone</h3>
           <div className="worker-list">
-            {workersInRadius.map((worker) => (
-              <div key={worker.id} className="worker-card">
+            {workersInRadius.map((worker, index) => (
+              <div 
+                key={worker.id} 
+                className="worker-card"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <div className="worker-avatar">
                   {worker.name.charAt(0)}
                 </div>
@@ -214,6 +218,10 @@ const WorkerSearchMap = () => {
                 </div>
                 <div className="worker-distance">
                   ~{Math.round(Math.random() * 3 + 1)}km
+                </div>
+                <div className="worker-status">
+                  <div className="status-dot"></div>
+                  Disponible
                 </div>
               </div>
             ))}
