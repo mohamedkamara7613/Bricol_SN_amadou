@@ -6,14 +6,17 @@ import './WorkerSearchMap.css';
 
 const WorkerSearchMap = () => {
   const [isSearching, setIsSearching] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchRadius, setSearchRadius] = useState(0);
   const [workersInRadius, setWorkersInRadius] = useState([]);
   const [showNotifications, setShowNotifications] = useState(false);
+  const [searchProgress, setSearchProgress] = useState(0);
+  const [showResults, setShowResults] = useState(false);
 
   // User location (center of map)
   const userLocation = { x: 50, y: 50 }; // Percentage coordinates
   const radiusKm = 5; // 5km radius
-  const radiusPixels = 120; // Visual radius in pixels
+  const radiusPixels = 140; // Visual radius in pixels
 
   // Calculate distance between two points
   const calculateDistance = (point1, point2) => {
@@ -22,23 +25,50 @@ const WorkerSearchMap = () => {
     return Math.sqrt(dx * dx + dy * dy);
   };
 
-  // Handle search functionality
+  // Handle search functionality with loading animation
   const handleSearch = () => {
     setIsSearching(true);
-    setSearchRadius(radiusPixels);
+    setIsLoading(true);
+    setSearchProgress(0);
+    setShowResults(false);
+    setShowNotifications(false);
     
-    // Find workers within radius
-    const workersInRange = mockWorkers.filter(worker => {
-      const distance = calculateDistance(userLocation, worker.position);
-      return distance <= 25; // Adjusted for percentage coordinates
-    });
-    
-    setWorkersInRadius(workersInRange);
-    
-    // Show notifications after a short delay
+    // Start search animation
     setTimeout(() => {
-      setShowNotifications(true);
-    }, 1000);
+      setSearchRadius(radiusPixels);
+    }, 200);
+    
+    // Simulate search progress
+    const progressInterval = setInterval(() => {
+      setSearchProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          return 100;
+        }
+        return prev + 10;
+      });
+    }, 150);
+    
+    // Find workers within radius after loading
+    setTimeout(() => {
+      const workersInRange = mockWorkers.filter(worker => {
+        const distance = calculateDistance(userLocation, worker.position);
+        return distance <= 25; // Adjusted for percentage coordinates
+      });
+      
+      setWorkersInRadius(workersInRange);
+      setIsLoading(false);
+      
+      // Show results with staggered animation
+      setTimeout(() => {
+        setShowResults(true);
+      }, 300);
+      
+      // Show notifications with delay
+      setTimeout(() => {
+        setShowNotifications(true);
+      }, 800);
+    }, 2000);
   };
 
   // Reset search
