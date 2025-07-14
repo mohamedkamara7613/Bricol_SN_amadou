@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { mockWorkers } from '../data/mock';
+import WorkerProfileModal from './WorkerProfileModal';
 import './WorkerSearchMap.css';
 
 const WorkerSearchMap = () => {
@@ -12,6 +13,8 @@ const WorkerSearchMap = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [searchProgress, setSearchProgress] = useState(0);
   const [showResults, setShowResults] = useState(false);
+  const [selectedWorker, setSelectedWorker] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // User location (center of map)
   const userLocation = { x: 50, y: 50 }; // Percentage coordinates
@@ -23,6 +26,20 @@ const WorkerSearchMap = () => {
     const dx = point1.x - point2.x;
     const dy = point1.y - point2.y;
     return Math.sqrt(dx * dx + dy * dy);
+  };
+
+  // Handle worker click
+  const handleWorkerClick = (worker) => {
+    if (workersInRadius.some(w => w.id === worker.id)) {
+      setSelectedWorker(worker);
+      setIsModalOpen(true);
+    }
+  };
+
+  // Handle modal close
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setSelectedWorker(null);
   };
 
   // Handle search functionality with loading animation
@@ -80,6 +97,8 @@ const WorkerSearchMap = () => {
     setShowNotifications(false);
     setSearchProgress(0);
     setShowResults(false);
+    setSelectedWorker(null);
+    setIsModalOpen(false);
   };
 
   return (
@@ -143,18 +162,22 @@ const WorkerSearchMap = () => {
             return (
               <div
                 key={worker.id}
-                className={`worker-point ${isInRadius && showResults ? 'in-radius' : ''} ${showNotifications && isInRadius ? 'notification-active' : ''}`}
+                className={`worker-point ${isInRadius && showResults ? 'in-radius' : ''} ${showNotifications && isInRadius ? 'notification-active' : ''} ${isInRadius ? 'clickable' : ''}`}
                 style={{
                   left: `${worker.position.x}%`,
                   top: `${worker.position.y}%`,
                   animationDelay: showResults ? `${index * 0.1}s` : '0s'
                 }}
+                onClick={() => handleWorkerClick(worker)}
               >
                 <div className="worker-dot"></div>
                 <div className="worker-info">
                   <div className="worker-name">{worker.name}</div>
                   <div className="worker-specialty">{worker.specialty}</div>
                   <div className="worker-rating">★ {worker.rating}</div>
+                  {isInRadius && (
+                    <div className="click-hint">Cliquez pour voir le profil</div>
+                  )}
                 </div>
                 {showNotifications && isInRadius && (
                   <div className="notification-badge">📬</div>
@@ -205,8 +228,9 @@ const WorkerSearchMap = () => {
             {workersInRadius.map((worker, index) => (
               <div 
                 key={worker.id} 
-                className="worker-card"
+                className="worker-card clickable"
                 style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => handleWorkerClick(worker)}
               >
                 <div className="worker-avatar">
                   {worker.name.charAt(0)}
@@ -228,6 +252,13 @@ const WorkerSearchMap = () => {
           </div>
         </div>
       )}
+
+      {/* Worker Profile Modal */}
+      <WorkerProfileModal 
+        worker={selectedWorker}
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+      />
     </div>
   );
 };
