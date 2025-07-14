@@ -112,11 +112,27 @@ const WorkerSearchMap = () => {
                 top: `${userLocation.y}%`,
                 width: `${searchRadius}px`,
                 height: `${searchRadius}px`,
-                marginLeft: `-${searchRadius/2}px`,
-                marginTop: `-${searchRadius/2}px`,
+                transform: 'translate(-50%, -50%)',
               }}
             >
               <div className="radius-label">{radiusKm}km</div>
+              {isLoading && (
+                <div className="search-wave"></div>
+              )}
+            </div>
+          )}
+
+          {/* Loading overlay */}
+          {isLoading && (
+            <div className="loading-overlay">
+              <div className="loading-spinner"></div>
+              <div className="loading-text">Recherche en cours...</div>
+              <div className="loading-progress">
+                <div 
+                  className="progress-bar"
+                  style={{ width: `${searchProgress}%` }}
+                ></div>
+              </div>
             </div>
           )}
 
