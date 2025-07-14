@@ -137,16 +137,17 @@ const WorkerSearchMap = () => {
           )}
 
           {/* Worker points */}
-          {mockWorkers.map((worker) => {
+          {mockWorkers.map((worker, index) => {
             const isInRadius = workersInRadius.some(w => w.id === worker.id);
             
             return (
               <div
                 key={worker.id}
-                className={`worker-point ${isInRadius ? 'in-radius' : ''} ${showNotifications && isInRadius ? 'notification-active' : ''}`}
+                className={`worker-point ${isInRadius && showResults ? 'in-radius' : ''} ${showNotifications && isInRadius ? 'notification-active' : ''}`}
                 style={{
                   left: `${worker.position.x}%`,
                   top: `${worker.position.y}%`,
+                  animationDelay: showResults ? `${index * 0.1}s` : '0s'
                 }}
               >
                 <div className="worker-dot"></div>
@@ -157,6 +158,9 @@ const WorkerSearchMap = () => {
                 </div>
                 {showNotifications && isInRadius && (
                   <div className="notification-badge">📬</div>
+                )}
+                {isInRadius && showResults && (
+                  <div className="success-ring"></div>
                 )}
               </div>
             );
