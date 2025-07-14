@@ -183,12 +183,15 @@ const WorkerSearchMap = () => {
                 onClick={handleReset}
                 variant="outline"
                 className="reset-button"
+                disabled={isLoading}
               >
-                Nouvelle recherche
+                {isLoading ? 'Recherche...' : 'Nouvelle recherche'}
               </Button>
-              <Badge variant="secondary" className="results-badge">
-                {workersInRadius.length} ouvrier{workersInRadius.length !== 1 ? 's' : ''} trouvé{workersInRadius.length !== 1 ? 's' : ''}
-              </Badge>
+              {showResults && (
+                <Badge variant="secondary" className="results-badge">
+                  {workersInRadius.length} ouvrier{workersInRadius.length !== 1 ? 's' : ''} trouvé{workersInRadius.length !== 1 ? 's' : ''}
+                </Badge>
+              )}
             </div>
           )}
         </div>
