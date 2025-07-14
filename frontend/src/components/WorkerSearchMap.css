@@ -362,30 +362,35 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1.2rem;
   background: #f8fafc;
-  border-radius: 0.75rem;
-  transition: all 0.3s ease;
+  border-radius: 1rem;
+  transition: all 0.4s ease;
   border: 1px solid #e2e8f0;
+  animation: cardSlideIn 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .worker-card:hover {
   background: #f1f5f9;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-color: #2233aa;
 }
 
 .worker-avatar {
-  width: 40px;
-  height: 40px;
-  background: #2233aa;
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #2233aa, #1e40af);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 1.125rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 8px rgba(34, 51, 170, 0.2);
 }
 
 .worker-details {
@@ -393,9 +398,27 @@
 }
 
 .worker-distance {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   color: #64748b;
   font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.worker-status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: statusPulse 2s infinite;
 }
 
 /* Animations */
