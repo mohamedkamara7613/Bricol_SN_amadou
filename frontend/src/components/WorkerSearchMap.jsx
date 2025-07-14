@@ -74,9 +74,12 @@ const WorkerSearchMap = () => {
   // Reset search
   const handleReset = () => {
     setIsSearching(false);
+    setIsLoading(false);
     setSearchRadius(0);
     setWorkersInRadius([]);
     setShowNotifications(false);
+    setSearchProgress(0);
+    setShowResults(false);
   };
 
   return (
