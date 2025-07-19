@@ -10,7 +10,8 @@ import RegisterStep2 from './pages/RegisterStep2';
 import ServiceChoicePage from './pages/ServiceChoicePage';
 import DescribeProblemPage from './pages/DescribeProblemPage';
 import DescribeEtatDesLieuxPage from './pages/DescribeEtatDesLieuxPage';
-
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import NotFoundPage from './pages/NotFoundPage';
 import Layout from "./components/Layout";
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
             <Route path="/describe-problem" element={<DescribeProblemPage />} />
             <Route path="/etat-des-lieux" element={<DescribeEtatDesLieuxPage />} />
             <Route path="/search" element={<WorkerSearchMap />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Layout>
       </BrowserRouter>
