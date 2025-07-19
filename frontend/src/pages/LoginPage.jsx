@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"; // Assure-toi d'avoir ça en haut si tu utilises un lien
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex items-center justify-center bg-gray-100 py-8 flex-grow">
       <div className="bg-white p-8 shadow rounded w-full max-w-sm">
@@ -27,8 +30,10 @@ export default function LoginPage() {
             </div>
           </div>
           <button
+            onClick={() => navigate('/register/step1')}
             type="submit"
             className="w-full bg-blue-800 text-white py-2 rounded hover:bg-blue-900 transition"
+            
           >
             Se connecter
           </button>
