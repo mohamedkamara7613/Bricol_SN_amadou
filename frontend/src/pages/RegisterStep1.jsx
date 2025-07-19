@@ -109,7 +109,6 @@ export default function RegisterStep1() {
             />
             )}
 
-
           <button
             type="submit"
             className="w-full bg-blue-800 text-white py-2 rounded hover:bg-blue-900 transition"

@@ -86,8 +86,10 @@ export default function RegisterStep2() {
           <button
             type="submit"
             className="w-full bg-blue-800 text-white py-2 rounded hover:bg-blue-900 transition"
+            onClick={() => navigate('/services')}
           >
             Suivant
+            
           </button>
         </form>
       </div>
