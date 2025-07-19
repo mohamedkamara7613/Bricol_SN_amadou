@@ -1,22 +1,30 @@
 /* Mobile-first responsive design */
+body, html {
+  margin: 0;
+  padding: 0;
+}
 .worker-search-container {
-  min-height: 100vh;
+
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  padding: 1rem;
+  padding: 0.25rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  max-height: 100%;
+  margin : 0 auto;
+  box-sizing: border-box;
 }
 
 .search-header {
   text-align: center;
-  margin-bottom: 2rem;
-  padding: 0 1rem;
+  margin-top: 0.1rem;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
 }
 
 .search-title {
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-size: 0.825rem;
+  font-weight: 600;
   color: #2233aa;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   line-height: 1.2;
 }
 
@@ -39,7 +47,7 @@
 .map-background {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 60px;
   background: 
     /* Streets and roads */
     linear-gradient(90deg, #e2e8f0 0%, #e2e8f0 2px, transparent 2px, transparent 100%),
@@ -692,7 +700,7 @@
 
 @media (min-width: 1024px) {
   .worker-search-container {
-    padding: 3rem;
+    padding: 0.25rem;
   }
   
   .map-container {
@@ -700,6 +708,6 @@
   }
   
   .map-background {
-    height: 600px;
+    height: 480px;
   }
 }

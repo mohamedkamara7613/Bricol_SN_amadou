@@ -102,6 +102,7 @@ const WorkerSearchMap = () => {
   };
 
   return (
+    <div className='bg-gray-100  flex  flex-grow'>
     <div className="worker-search-container">
       <div className="search-header">
         <h1 className="search-title">Trouvez un ouvrier près de vous</h1>
@@ -259,6 +260,7 @@ const WorkerSearchMap = () => {
         isOpen={isModalOpen}
         onClose={handleModalClose}
       />
+    </div>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const services = [
     { label: 'Plomberie', value: 'plomberie' },
@@ -12,7 +13,8 @@ const services = [
 ];
 
 export default function ServiceChoicePage() {
-  const [selectedService, setSelectedService] = useState(null);
+    const [selectedService, setSelectedService] = useState(null);
+    const navigate = useNavigate();
 
   return (
     <div className=" bg-gray-100 p-6 flex flex-col items-center justify-center py-8 flex-grow">
@@ -42,9 +44,7 @@ export default function ServiceChoicePage() {
 
       <button
         className="mt-10 bg-blue-800 text-white px-6 py-2 rounded-full hover:bg-blue-900 transition"
-        onClick={() => {
-          // redirection ou stockage à venir
-        }}
+        onClick={() => { navigate('/describe-problem'); }}
       >
         Continuer
       </button>
